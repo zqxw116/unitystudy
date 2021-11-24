@@ -17,7 +17,10 @@ public class PlayerFire : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             // 2. 총알 공장에서 총알을 만든다
+            GameObject bullet = Instantiate(bulletFactory);
+
             // 3. 총알을 발사한다
+            bullet.transform.position = firePosition.transform.position;
         }
     }
 }
