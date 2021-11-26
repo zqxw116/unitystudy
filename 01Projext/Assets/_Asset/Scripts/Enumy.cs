@@ -68,6 +68,7 @@ public class Enumy : MonoBehaviour
         Destroy(gameObject);
 
         // 에너미를 잡을 때마다 현재 점수를 표시하고 싶다.
+
         // 1. 씬에서 ScoreManager 객체를 찾아오자.
         GameObject smObject = GameObject.Find("ScoreManager");
         // 2. ScoreManager 게임 오브젝트에서 얻어온다.
@@ -76,6 +77,22 @@ public class Enumy : MonoBehaviour
         sm.currentScore++;
         // 4. 화면에 점수 표시하기
         sm.currentScoreUI.text = "현재 점수 : " + sm.currentScore;
+
+        // 목표: 최고 점수를 표시하고 싶다.
+
+        // 1. 현재 점수가 최고 점수보다 크니까
+        // -> 만약 현재 점수가 최고 점수를 초과했다면
+        if(sm.currentScore > sm.bestScore)
+        {
+            // 2. 최고 점수를 갱신시킨다.
+            sm.bestScore = sm.currentScore;
+
+            // 3. 최고 점수 UI에 표시
+            sm.bestScoreUI.text = "최고 점수 : " + sm.bestScore;
+
+            // 목표: 최고 점수를 저장하고 싶다.(key, value)
+            PlayerPrefs.SetInt("Best Score", sm.bestScore);
+        }
 
     }
     
